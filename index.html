@@ -20,6 +20,11 @@
             --dark-bg: #000000;
             --dark-layer: #0a0a0a;
             --grid-color: rgba(0, 255, 65, 0.1);
+            --light-text: #ccc; /* Variable pour texte plus lisible */
+        }
+
+        html {
+            scroll-behavior: smooth; /* Ajout pour un défilement fluide */
         }
 
         body {
@@ -35,7 +40,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: 
+            background:
                 linear-gradient(0deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px);
             background-size: 40px 40px;
@@ -176,6 +181,37 @@
             width: 100%;
         }
 
+        /* --- MOBILE NAV (BURGER) --- */
+        .burger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .burger div {
+            width: 28px;
+            height: 3px;
+            background-color: var(--neon-green);
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* Burger Animation (X) */
+        .burger.toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+            background-color: var(--neon-cyan);
+        }
+        .burger.toggle .line2 {
+            opacity: 0;
+        }
+        .burger.toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+            background-color: var(--neon-cyan);
+        }
+        /* --- FIN MOBILE NAV --- */
+
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -214,13 +250,11 @@
             border-right: 3px solid var(--neon-cyan);
             white-space: nowrap;
             overflow: hidden;
-            animation: typing 3.5s steps(40) infinite, blink 0.7s step-end infinite;
+            /* L'animation CSS a été supprimée pour laisser le JS fonctionner */
+            animation: blink 0.7s step-end infinite; /* Garder juste le clignotement */
         }
 
-        @keyframes typing {
-            0%, 100% { width: 0; }
-            50% { width: 100%; }
-        }
+        /* Suppression de @keyframes typing, géré par JS */
 
         @keyframes blink {
             50% { border-color: transparent; }
@@ -232,6 +266,7 @@
             color: #ffffff;
             margin-bottom: 40px;
             max-width: 600px;
+            font-weight: 500; /* Style déplacé depuis l'HTML */
         }
 
         .hero-stats {
@@ -275,7 +310,8 @@
 
         .stat-label {
             font-size: 12px;
-            color: #666;
+            color: #ffffff; /* Style déplacé depuis l'HTML */
+            line-height: 1.8; /* Style déplacé depuis l'HTML */
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -439,6 +475,15 @@
             box-shadow: 0 0 20px var(--neon-green);
         }
 
+        /* About Me Section */
+        #about p {
+            font-size: 19px;
+            line-height: 1.8;
+            color: var(--light-text); /* Amélioré */
+            margin-bottom: 50px;
+            font-weight: 500;
+        }
+
         /* Skills Grid */
         .skills-grid {
             display: grid;
@@ -447,8 +492,7 @@
         }
 
         .skill-card {
-            /*background: rgba(0, 255, 65, 0.03);*/
-             background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid var(--neon-green);
             padding: 40px;
             position: relative;
@@ -458,24 +502,23 @@
         }
 
         .skill-card::before {
-               content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
-    transition: left 0.5s ease;
-    z-index: 1;
-
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
         }
 
         .skill-card:hover::before {
-           left: 100%;
+            left: 100%;
         }
 
         .skill-card:hover {
-           border-color: var(--neon-cyan);
+            border-color: var(--neon-cyan);
             box-shadow: 0 30px 80px rgba(0, 255, 65, 0.3);
             transform: translateX(10px);
         }
@@ -501,10 +544,11 @@
 
         .skill-card li {
             padding: 10px 0;
-            color: #999;
+            color: var(--light-text); /* Amélioré */
             font-size: 16px;
             position: relative;
             padding-left: 25px;
+            line-height: 1.8; /* Style déplacé depuis l'HTML */
         }
 
         .skill-card li::before {
@@ -573,7 +617,7 @@
         .project-card p {
             font-size: 16px;
             line-height: 1.8;
-            color: #999;
+            color: var(--light-text); /* Amélioré */
             margin-bottom: 30px;
         }
 
@@ -610,6 +654,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer; /* Ajout pour indiquer qu'il est cliquable */
         }
 
         .project-link:hover {
@@ -668,20 +713,37 @@
             50% { box-shadow: 0 0 50px var(--neon-green), 0 0 80px var(--neon-green); }
         }
 
+        /* Fusion des blocs .timeline-content dupliqués */
         .timeline-content {
-
-        /*background: rgba(0, 255, 65, 0.03);*/
-             background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid var(--neon-green);
-            padding: 35px;
+            padding: 40px;
             position: relative;
+            overflow: hidden; /* Ajouté depuis le bloc dupliqué */
             clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-            transition: all 0.3s;
+            transition: all 0.3s ease; /* Ajouté depuis le bloc dupliqué */
         }
 
+        /* Effet de balayage lumineux */
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .timeline-content:hover::before {
+            left: 100%;
+        }
+
+        /* Animation et style au survol */
         .timeline-content:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 255, 65, 0.3);
+            transform: translateY(-8px); /* Changé de -10px à -8px pour correspondre */
+            box-shadow: 0 15px 40px rgba(0, 255, 65, 0.3); /* Changé */
             border-color: var(--neon-cyan);
         }
 
@@ -722,8 +784,8 @@
 
         .timeline-content li {
             padding: 8px 0;
-            color: #999;
-            line-height: 1.7;
+            color: var(--light-text); /* Amélioré */
+            line-height: 1.8; /* Style déplacé depuis l'HTML */
             position: relative;
             padding-left: 25px;
         }
@@ -736,45 +798,6 @@
             text-shadow: 0 0 10px var(--neon-cyan);
         }
 
-
-
-.timeline-content {
-    position: relative;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--neon-green);
-    padding: 40px;
-    transition: all 0.3s ease;
-    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-}
-
-/* Effet de balayage lumineux */
-.timeline-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.timeline-content:hover::before {
-    left: 100%;
-}
-
-/* Animation et style au survol */
-.timeline-content:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 255, 65, 0.3);
-    border-color: var(--neon-cyan);
-}
-
-
-
-
-
         /* Contact Section */
         .contact-container {
             max-width: 900px;
@@ -785,7 +808,7 @@
         .contact-container p {
             font-size: 19px;
             line-height: 1.8;
-            color: #ffffff;
+            color: var(--light-text); /* Amélioré */
             margin-bottom: 50px;
             font-weight: 500;
         }
@@ -797,44 +820,37 @@
             margin-top: 50px;
         }
 
-        /* Animation de la lueur */
-@keyframes shine {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
+        /* Contact box */
+        .contact-box {
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--neon-green);
+            padding: 40px 30px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+        }
 
-/* Contact box */
-.contact-box {
-    position: relative;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--neon-green);
-    padding: 40px 30px;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s;
-    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-}
+        /* Lumière continue */
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+            animation: shine 3s linear infinite; /* même effet que stat-box */
+        }
 
-/* Lumière continue */
-.contact-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
-    animation: shine 3s linear infinite; /* même effet que stat-box */
-}
-
-/* Hover : élévation et changement de bordure */
-.contact-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(0, 255, 65, 0.3);
-    border-color: var(--neon-cyan);
-}
-
+        /* Hover : élévation et changement de bordure */
+        .contact-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 65, 0.3);
+            border-color: var(--neon-cyan);
+        }
 
         .contact-icon {
             font-size: 48px;
@@ -845,7 +861,8 @@
         .contact-label {
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
-            color: #666;
+            color: #ffffff; /* Style déplacé depuis l'HTML */
+            line-height: 1.8; /* Style déplacé depuis l'HTML */
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -879,6 +896,7 @@
             .terminal { margin-top: 50px; }
             .timeline::before { left: 30px; }
             .timeline-item { grid-template-columns: 1fr; margin-left: 60px; }
+            .timeline-item:nth-child(even) .timeline-content { order: 1; } /* Conserver l'ordre */
             .timeline-item::before { left: 30px; }
             .timeline-content { order: 1; }
             .contact-grid { grid-template-columns: 1fr; }
@@ -886,7 +904,36 @@
 
         @media (max-width: 768px) {
             nav { padding: 20px; }
-            .nav-links { display: none; }
+
+            /* --- MOBILE NAV CSS --- */
+            .burger {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 50px;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in-out;
+            }
+            .nav-links.nav-active {
+                transform: translateX(0%);
+            }
+            .nav-links a {
+                font-size: 20px;
+            }
+            .nav-links a::after {
+                display: none; /* Pas besoin de soulignement au survol en mobile */
+            }
+            /* --- FIN MOBILE NAV CSS --- */
+
             section { padding: 60px 20px; }
             .hero h1 { font-size: 42px; }
             .typing-effect { font-size: 20px; }
@@ -916,35 +963,36 @@
     <div class="content">
         <nav>
             <div class="logo">SZ://</div>
-            <div class="nav-links">
-                <a href="#about">ABOUT</a>
+            <div class="nav-links"> <a href="#about">ABOUT</a>
                 <a href="#skills">SKILLS</a>
                 <a href="#projects">PROJECTS</a>
                 <a href="#experience">EXPERIENCE</a>
                 <a href="#contact">CONTACT</a>
             </div>
+            <div class="burger"> <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
 
-        <section class="hero">
-            <div class="hero-grid">
+        <section class="hero" id="hero"> <div class="hero-grid">
                 <div class="hero-text">
                     <h1 class="glitch" data-text="SALAH-EDDINE ZITOUNI">SALAH-EDDINE ZITOUNI</h1>
-                    <div class="typing-effect">CYBERSECURITY ENGINEERING STUDENT</div>
-                    <p style="font-size: 19px; line-height: 1.8; color: #ffffff; margin-bottom: 50px; font-weight: 500;">
+                    <div class="typing-effect"></div> <p>
                         Cybersecurity engineering student combining offensive security skills (penetration testing, vulnerability exploitation) with defensive expertise (SIEM, Zero Trust architecture). Turning security knowledge into practical solutions through hands-on projects..
                     </p>
                     <div class="hero-stats">
                         <div class="stat-box">
                             <div class="stat-number">5+</div>
-                            <div class="stat-label; line-height: 1.8; color: #ffffff;">Projects</div>
+                            <div class="stat-label">Projects</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-number">2</div>
-                            <div class="stat-label; line-height: 1.8; color: #ffffff;">Internships</div>
+                            <div class="stat-label">Internships</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-number">eJPT</div>
-                            <div class="stat-label; line-height: 1.8; color: #ffffff;">Preparing</div>
+                            <div class="stat-label">Preparing</div>
                         </div>
                     </div>
                     <div class="cta-buttons">
@@ -978,166 +1026,144 @@
                 <div class="section-line"></div>
             </div>
             <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 19px; line-height: 1.8; color: #ffffff; margin-bottom: 50px; font-weight: 500;">
+                <p>
                     I'm a cybersecurity engineering student at ESI Rabat, specializing in Information Systems Security and Cyber Defense. Through academic projects and internships, I've developed practical skills across both offensive security (penetration testing, web/API exploitation) and defensive operations (SIEM deployment, Zero Trust implementation, threat detection).
                 </p>
-                <p style="font-size: 19px; line-height: 1.8; color: #ffffff; margin-bottom: 50px; font-weight: 500;">
+                <p>
                     I'm passionate about understanding security from both attacker and defender perspectives—learning how systems break to better protect them. My projects showcase this approach: from exploiting OWASP Top 10 vulnerabilities to designing ML-based threat detection systems.
                 </p>
-                <p style="font-size: 19px; line-height: 1.8; color: #ffffff; margin-bottom: 50px; font-weight: 500;">
+                <p>
                     Currently seeking a PFE internship (February - July 2026) to grow my skills in real-world security environments and contribute to meaningful cybersecurity challenges.
                 </p>
             </div>
         </section>
 
-    <section id="skills" class="reveal">
-  <div class="section-header">
-    <div class="section-tag">// 02_TECHNICAL_ARSENAL</div>
-    <h2 class="section-title">SKILLS</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid">
-
-    <div class="skill-card">
-      <div class="skill-icon">⚔️</div>
-      <h3>OFFENSIVE SECURITY</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Burp Suite Professional</li>
-        <li style="line-height: 1.8; color: #ffffff;">OWASP ZAP</li>
-        <li style="line-height: 1.8; color: #ffffff;">Metasploit Framework</li>
-        <li style="line-height: 1.8; color: #ffffff;">Nmap & Reconnaissance</li>
-        <li style="line-height: 1.8; color: #ffffff;">SQLmap</li>
-        <li style="line-height: 1.8; color: #ffffff;">Web App Pentesting (DVWA, bWAPP)</li>
-        <li style="line-height: 1.8; color: #ffffff;">API Security Testing</li>
-        <li style="line-height: 1.8; color: #ffffff;">Mobile Security (APK Analysis)</li>
-        <li style="line-height: 1.8; color: #ffffff;">IDOR & Token Manipulation</li>
-        <li style="line-height: 1.8; color: #ffffff;">HTTPS Interception</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">🛡️</div>
-      <h3>DEFENSIVE SECURITY</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Wazuh SIEM</li>
-        <li style="line-height: 1.8; color: #ffffff;">Wireshark Analysis</li>
-        <li style="line-height: 1.8; color: #ffffff;">Zero Trust Architecture</li>
-        <li style="line-height: 1.8; color: #ffffff;">Keycloak IAM</li>
-        <li style="line-height: 1.8; color: #ffffff;">pfSense Firewall</li>
-        <li style="line-height: 1.8; color: #ffffff;">Threat Detection & Analysis</li>
-        <li style="line-height: 1.8; color: #ffffff;">Vulnerability Assessment</li>
-        <li style="line-height: 1.8; color: #ffffff;">Risk Management</li>
-        <li style="line-height: 1.8; color: #ffffff;">Security Audit</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">🖥️</div>
-      <h3>SYSTEMS ADMINISTRATION</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Linux Administration</li>
-        <li style="line-height: 1.8; color: #ffffff;">Windows Server</li>
-        <li style="line-height: 1.8; color: #ffffff;">Active Directory</li>
-        <li style="line-height: 1.8; color: #ffffff;">DNS / DHCP / LDAP</li>
-        <li style="line-height: 1.8; color: #ffffff;">Network Architecture</li>
-        <li style="line-height: 1.8; color: #ffffff;">Access Control</li>
-        <li style="line-height: 1.8; color: #ffffff;">OpenSSL / OpenSSH</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">💻</div>
-      <h3>DEVELOPMENT</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Python (FastAPI, Automation)</li>
-        <li style="line-height: 1.8; color: #ffffff;">C / Java / Jakarta EE</li>
-        <li style="line-height: 1.8; color: #ffffff;">Bash / PowerShell</li>
-        <li style="line-height: 1.8; color: #ffffff;">JavaScript / PHP</li>
-        <li style="line-height: 1.8; color: #ffffff;">REST API Development</li>
-        <li style="line-height: 1.8; color: #ffffff;">MySQL / PostgreSQL</li>
-        <li style="line-height: 1.8; color: #ffffff;">HTML5 / CSS</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">🤖</div>
-      <h3>AI & DATA SCIENCE</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Machine Learning (XGBoost, Random Forest)</li>
-        <li style="line-height: 1.8; color: #ffffff;">Threat Detection Systems</li>
-        <li style="line-height: 1.8; color: #ffffff;">SHAP Explainability</li>
-        <li style="line-height: 1.8; color: #ffffff;">Scikit-learn / Pandas / NumPy</li>
-        <li style="line-height: 1.8; color: #ffffff;">HDBSCAN Clustering</li>
-        <li style="line-height: 1.8; color: #ffffff;">Statistical Analysis</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">☁️</div>
-      <h3>CLOUD & DEVOPS</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Docker Containers</li>
-        <li style="line-height: 1.8; color: #ffffff;">Kubernetes Orchestration</li>
-        <li style="line-height: 1.8; color: #ffffff;">VMware / VirtualBox / Hyper-V</li>
-        <li style="line-height: 1.8; color: #ffffff;">Git Version Control</li>
-        <li style="line-height: 1.8; color: #ffffff;">Cloud Security</li>
-        <li style="line-height: 1.8; color: #ffffff;">CI/CD Concepts</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">🌐</div>
-      <h3>SPECIALIZED DOMAINS</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">IoT Security</li>
-        <li style="line-height: 1.8; color: #ffffff;">Mobile Security</li>
-        <li style="line-height: 1.8; color: #ffffff;">Embedded Systems Security</li>
-        <li style="line-height: 1.8; color: #ffffff;">Distributed Systems Security</li>
-        <li style="line-height: 1.8; color: #ffffff;">Biometric Security</li>
-        <li style="line-height: 1.8; color: #ffffff;">Blockchain Technology</li>
-      </ul>
-    </div>
-
-    <div class="skill-card">
-      <div class="skill-icon">📋</div>
-      <h3>METHODOLOGIES</h3>
-      <ul>
-        <li style="line-height: 1.8; color: #ffffff;">Ethical Hacking</li>
-        <li style="line-height: 1.8; color: #ffffff;">OWASP Top 10</li>
-        <li style="line-height: 1.8; color: #ffffff;">Security Governance</li>
-        <li style="line-height: 1.8; color: #ffffff;">Agile / Scrum (Certified)</li>
-        <li style="line-height: 1.8; color: #ffffff;">Project Management</li>
-        <li style="line-height: 1.8; color: #ffffff;">Technical Documentation</li>
-      </ul>
-    </div>
-
-
-
-    <div class="skill-card">
-      <div class="skill-icon">🌍</div>
-      <h3>LANGUAGES & SOFT SKILLS</h3>
-      <ul>
-
-        <li style="line-height: 1.8; color: #ffffff;">Problem-Solving</li>
-        <li style="line-height: 1.8; color: #ffffff;">Analytical Thinking</li>
-        <li style="line-height: 1.8; color: #ffffff;">Team Collaboration</li>
-
-
-        <li style="line-height: 1.8; color: #ffffff;">Technical Documentation</li>
-        <li style="line-height: 1.8; color: #ffffff;">Continuous learning</li>
-        <li style="line-height: 1.8; color: #ffffff;">Languages: Arabic (Native), French (B2), English (B2)</li>
-      </ul>
-    </div>
-
-
-
-
-
-
-  </div>
-</section>
-
-
+        <section id="skills" class="reveal">
+            <div class="section-header">
+                <div class="section-tag">// 02_TECHNICAL_ARSENAL</div>
+                <h2 class="section-title">SKILLS</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">⚔️</div>
+                    <h3>OFFENSIVE SECURITY</h3>
+                    <ul>
+                        <li>Burp Suite Professional</li>
+                        <li>OWASP ZAP</li>
+                        <li>Metasploit Framework</li>
+                        <li>Nmap & Reconnaissance</li>
+                        <li>SQLmap</li>
+                        <li>Web App Pentesting (DVWA, bWAPP)</li>
+                        <li>API Security Testing</li>
+                        <li>Mobile Security (APK Analysis)</li>
+                        <li>IDOR & Token Manipulation</li>
+                        <li>HTTPS Interception</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛡️</div>
+                    <h3>DEFENSIVE SECURITY</h3>
+                    <ul>
+                        <li>Wazuh SIEM</li>
+                        <li>Wireshark Analysis</li>
+                        <li>Zero Trust Architecture</li>
+                        <li>Keycloak IAM</li>
+                        <li>pfSense Firewall</li>
+                        <li>Threat Detection & Analysis</li>
+                        <li>Vulnerability Assessment</li>
+                        <li>Risk Management</li>
+                        <li>Security Audit</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🖥️</div>
+                    <h3>SYSTEMS ADMINISTRATION</h3>
+                    <ul>
+                        <li>Linux Administration</li>
+                        <li>Windows Server</li>
+                        <li>Active Directory</li>
+                        <li>DNS / DHCP / LDAP</li>
+                        <li>Network Architecture</li>
+                        <li>Access Control</li>
+                        <li>OpenSSL / OpenSSH</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>DEVELOPMENT</h3>
+                    <ul>
+                        <li>Python (FastAPI, Automation)</li>
+                        <li>C / Java / Jakarta EE</li>
+                        <li>Bash / PowerShell</li>
+                        <li>JavaScript / PHP</li>
+                        <li>REST API Development</li>
+                        <li>MySQL / PostgreSQL</li>
+                        <li>HTML5 / CSS</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <h3>AI & DATA SCIENCE</h3>
+                    <ul>
+                        <li>Machine Learning (XGBoost, Random Forest)</li>
+                        <li>Threat Detection Systems</li>
+                        <li>SHAP Explainability</li>
+                        <li>Scikit-learn / Pandas / NumPy</li>
+                        <li>HDBSCAN Clustering</li>
+                        <li>Statistical Analysis</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <h3>CLOUD & DEVOPS</h3>
+                    <ul>
+                        <li>Docker Containers</li>
+                        <li>Kubernetes Orchestration</li>
+                        <li>VMware / VirtualBox / Hyper-V</li>
+                        <li>Git Version Control</li>
+                        <li>Cloud Security</li>
+                        <li>CI/CD Concepts</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h3>SPECIALIZED DOMAINS</h3>
+                    <ul>
+                        <li>IoT Security</li>
+                        <li>Mobile Security</li>
+                        <li>Embedded Systems Security</li>
+                        <li>Distributed Systems Security</li>
+                        <li>Biometric Security</li>
+                        <li>Blockchain Technology</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📋</div>
+                    <h3>METHODOLOGIES</h3>
+                    <ul>
+                        <li>Ethical Hacking</li>
+                        <li>OWASP Top 10</li>
+                        <li>Security Governance</li>
+                        <li>Agile / Scrum (Certified)</li>
+                        <li>Project Management</li>
+                        <li>Technical Documentation</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🌍</div>
+                    <h3>LANGUAGES & SOFT SKILLS</h3>
+                    <ul>
+                        <li>Problem-Solving</li>
+                        <li>Analytical Thinking</li>
+                        <li>Team Collaboration</li>
+                        <li>Technical Documentation</li>
+                        <li>Continuous learning</li>
+                        <li>Languages: Arabic (Native), French (B2), English (B2)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <section id="projects" class="reveal">
             <div class="section-header">
@@ -1149,9 +1175,9 @@
                 <div class="project-card">
                     <div class="project-number">// PROJECT_01</div>
                     <h3>WEB APPLICATION SECURITY AUDIT</h3>
-                    <p style=" line-height: 1.8; color: #ffffff;">
-                        Comprehensive penetration testing laboratory targeting DVWA and bWAPP platforms. Conducted systematic OWASP Top 10 
-                        vulnerability assessments including SQL injection, XSS, CSRF, authentication bypass, and command injection exploits. 
+                    <p>
+                        Comprehensive penetration testing laboratory targeting DVWA and bWAPP platforms. Conducted systematic OWASP Top 10
+                        vulnerability assessments including SQL injection, XSS, CSRF, authentication bypass, and command injection exploits.
                         Documented attack vectors, exploitation techniques, and remediation strategies.
                     </p>
                     <div class="tech-tags">
@@ -1161,15 +1187,14 @@
                         <span class="tech-tag">XSS</span>
                         <span class="tech-tag">PENTEST</span>
                     </div>
-                    <a href="#" class="project-link">VIEW DETAILS →</a>
+                    <a class="project-link">VIEW DETAILS →</a>
                 </div>
-
                 <div class="project-card">
                     <div class="project-number">// PROJECT_02</div>
                     <h3>API & MOBILE SECURITY ASSESSMENT</h3>
-                    <p style=" line-height: 1.8; color: #ffffff;">
-                        Full-spectrum security audit of REST API and Android application. Performed authentication bypass, token manipulation, 
-                        IDOR testing, APK decompilation, API fuzzing, and HTTPS interception. Created comprehensive Postman security test 
+                    <p>
+                        Full-spectrum security audit of REST API and Android application. Performed authentication bypass, token manipulation,
+                        IDOR testing, APK decompilation, API fuzzing, and HTTPS interception. Created comprehensive Postman security test
                         collection for automated vulnerability scanning and validation.
                     </p>
                     <div class="tech-tags">
@@ -1179,15 +1204,14 @@
                         <span class="tech-tag">APK ANALYSIS</span>
                         <span class="tech-tag">MITM</span>
                     </div>
-                    <a href="#" class="project-link">VIEW DETAILS →</a>
+                    <a class="project-link">VIEW DETAILS →</a>
                 </div>
-
                 <div class="project-card">
                     <div class="project-number">// PROJECT_03</div>
                     <h3>ZERO TRUST ARCHITECTURE</h3>
-                    <p style=" line-height: 1.8; color: #ffffff;">
-                        Designed and implemented enterprise-grade Zero Trust security model featuring identity-based access control, 
-                        network microsegmentation, and continuous monitoring. Integrated Keycloak IAM for authentication, pfSense for 
+                    <p>
+                        Designed and implemented enterprise-grade Zero Trust security model featuring identity-based access control,
+                        network microsegmentation, and continuous monitoring. Integrated Keycloak IAM for authentication, pfSense for
                         network segmentation, and Wazuh SIEM for threat detection with simulated attack scenarios.
                     </p>
                     <div class="tech-tags">
@@ -1197,15 +1221,14 @@
                         <span class="tech-tag">WAZUH</span>
                         <span class="tech-tag">SIEM</span>
                     </div>
-                    <a href="#" class="project-link">VIEW DETAILS →</a>
+                    <a class="project-link">VIEW DETAILS →</a>
                 </div>
-
                 <div class="project-card">
                     <div class="project-number">// PROJECT_04</div>
                     <h3>ML-BASED THREAT DETECTION</h3>
-                    <p style=" line-height: 1.8; color: #ffffff;">
-                        Developed advanced threat detection system combining behavioral clustering algorithms (HDBSCAN) with ensemble 
-                        learning models (XGBoost, Random Forest). Implemented SHAP-based explainability framework for transparent model 
+                    <p>
+                        Developed advanced threat detection system combining behavioral clustering algorithms (HDBSCAN) with ensemble
+                        learning models (XGBoost, Random Forest). Implemented SHAP-based explainability framework for transparent model
                         interpretation, validation, and threat intelligence automation.
                     </p>
                     <div class="tech-tags">
@@ -1215,15 +1238,14 @@
                         <span class="tech-tag">SHAP</span>
                         <span class="tech-tag">AI SECURITY</span>
                     </div>
-                    <a href="#" class="project-link">VIEW DETAILS →</a>
+                    <a class="project-link">VIEW DETAILS →</a>
                 </div>
-
                 <div class="project-card">
                     <div class="project-number">// PROJECT_05</div>
                     <h3>BLOCKCHAIN E-LEARNING PLATFORM</h3>
-                    <p style=" line-height: 1.8; color: #ffffff;">
-                        Created decentralized learning platform with secure certification system and tamper-proof learner tracking via 
-                        smart contracts. Ensures credential integrity, transparency, and immutable record-keeping for educational 
+                    <p>
+                        Created decentralized learning platform with secure certification system and tamper-proof learner tracking via
+                        smart contracts. Ensures credential integrity, transparency, and immutable record-keeping for educational
                         achievements using blockchain technology and cryptographic verification.
                     </p>
                     <div class="tech-tags">
@@ -1233,7 +1255,7 @@
                         <span class="tech-tag">SOLIDITY</span>
                         <span class="tech-tag">SECURITY</span>
                     </div>
-                    <a href="#" class="project-link">VIEW DETAILS →</a>
+                    <a class="project-link">VIEW DETAILS →</a>
                 </div>
             </div>
         </section>
@@ -1251,13 +1273,12 @@
                         <h3>AI & CYBERSECURITY DEVELOPMENT INTERN</h3>
                         <div class="company">Solpack · Marrakech, Morocco</div>
                         <ul>
-                            <li style="line-height: 1.8; color: #ffffff;">Developed AI-powered document analyzer with local processing and automated security content analysis</li>
-                            <li style="line-height: 1.8; color: #ffffff;">Built REST API (FastAPI) with multi-layer security: authentication, rate limiting, file validation, risk scoring</li>
+                            <li>Developed AI-powered document analyzer with local processing and automated security content analysis</li>
+                            <li>Built REST API (FastAPI) with multi-layer security: authentication, rate limiting, file validation, risk scoring</li>
                         </ul>
                     </div>
                     <div></div>
                 </div>
-
                 <div class="timeline-item">
                     <div></div>
                     <div class="timeline-content">
@@ -1265,20 +1286,19 @@
                         <h3>CYBERSECURITY & WEB DEVELOPMENT INTERN</h3>
                         <div class="company">Solpack · Marrakech, Morocco</div>
                         <ul>
-                            <li style="line-height: 1.8; color: #ffffff;">Developed Progressive Web App (PWA) push notification system for hospitality establishments</li>
-                            <li style="line-height: 1.8; color: #ffffff;">Configured pfSense firewall with captive portal for network management and access control</li>
+                            <li>Developed Progressive Web App (PWA) push notification system for hospitality establishments</li>
+                            <li>Configured pfSense firewall with captive portal for network management and access control</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <span class="timeline-date">2023 - PRESENT</span>
                         <h3>ACTIVE MEMBER</h3>
                         <div class="company">Code-ESI Club · ESI Rabat</div>
                         <ul>
-                            <li style="line-height: 1.8; color: #ffffff;">Participated in workshops: network security, Linux administration, web exploitation, penetration testing</li>
-                            <li style="line-height: 1.8; color: #ffffff;">Collaborated with peers on cybersecurity challenges, CTF competitions, and security research</li>
+                            <li>Participated in workshops: network security, Linux administration, web exploitation, penetration testing</li>
+                            <li>Collaborated with peers on cybersecurity challenges, CTF competitions, and security research</li>
                         </ul>
                     </div>
                     <div></div>
@@ -1293,10 +1313,10 @@
                 <div class="section-line"></div>
             </div>
             <div class="contact-container">
-                 <p color="white ">
+                <p>
                     Currently seeking PFE internship (February - July 2026) in cybersecurity. I'm eager to apply my knowledge in penetration testing, security analysis, or defensive operations in a real-world environment and learn from experienced professionals.
                 </p>
-                <p color="white ">
+                <p>
                     Whether you're offering an internship opportunity or want to discuss cybersecurity topics, I'd love to connect.
                 </p>
                 <div class="cta-buttons">
@@ -1306,17 +1326,17 @@
                 <div class="contact-grid">
                     <a href="mailto:salah-eddine.zitouni@esi.ac.ma" class="contact-box">
                         <div class="contact-icon">📧</div>
-                        <div class="contact-label; line-height: 1.8; color: #ffffff;">EMAIL</div>
+                        <div class="contact-label">EMAIL</div>
                         <div class="contact-value">salah-eddine.zitouni@esi.ac.ma</div>
                     </a>
                     <a href="tel:+212696046320" class="contact-box">
                         <div class="contact-icon">📱</div>
-                        <div class="contact-label; line-height: 1.8; color: #ffffff;">PHONE</div>
+                        <div class="contact-label">PHONE</div>
                         <div class="contact-value">+212 696 046 320</div>
                     </a>
                     <a href="https://linkedin.com/in/salah-eddine-zitouni" target="_blank" class="contact-box">
                         <div class="contact-icon">💼</div>
-                        <div class="contact-label; line-height: 1.8; color: #ffffff;">LINKEDIN</div>
+                        <div class="contact-label">LINKEDIN</div>
                         <div class="contact-value">salah-eddine-zitouni</div>
                     </a>
                 </div>
@@ -1347,21 +1367,18 @@
         function drawMatrix() {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
             ctx.fillStyle = '#00ff41';
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
                 const text = chars[Math.floor(Math.random() * chars.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
         }
-
         setInterval(drawMatrix, 50);
 
         window.addEventListener('resize', () => {
@@ -1369,39 +1386,68 @@
             canvas.height = window.innerHeight;
         });
 
+        // --- NOUVEAU: Mobile Nav (Burger) ---
+        const burger = document.querySelector('.burger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        const navSlide = () => {
+            burger.addEventListener('click', () => {
+                // Toggle Nav
+                navLinks.classList.toggle('nav-active');
+
+                // Burger Animation
+                burger.classList.toggle('toggle');
+            });
+
+            // Fermer le menu en cliquant sur un lien
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('nav-active')) {
+                        navLinks.classList.remove('nav-active');
+                        burger.classList.remove('toggle');
+                    }
+                });
+            });
+        }
+        navSlide(); // Appeler la fonction
+        // --- FIN NOUVEAU ---
+
+
         // Scroll Reveal Animation
         const reveals = document.querySelectorAll('.reveal');
-        
         function revealOnScroll() {
             reveals.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
-                
                 if (elementTop < windowHeight - 100) {
                     element.classList.add('active');
                 }
             });
         }
-
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
 
-        // Smooth Scrolling
+        // Smooth Scrolling (Maintenant géré par CSS `html { scroll-behavior: smooth; }`)
+        // Le code JS ci-dessous est gardé pour la compatibilité et pour fermer le menu
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Pas besoin de e.preventDefault() si on utilise le scroll-behavior CSS
+                // Sauf si on veut un contrôle plus fin, mais pour l'instant c'est ok.
+
+                // Ferme le menu mobile si un lien est cliqué
+                if (navLinks.classList.contains('nav-active')) {
+                    navLinks.classList.remove('nav-active');
+                    burger.classList.remove('toggle');
                 }
             });
         });
 
         // Active Navigation
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
+            const sections = document.querySelectorAll('section[id]'); // Cibler sections avec ID
+            const navLinksActive = document.querySelectorAll('.nav-links a');
+
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 200;
@@ -1410,49 +1456,64 @@
                 }
             });
 
-            navLinks.forEach(link => {
+            // Gérer le cas où on est tout en haut (section 'hero')
+            if (current === '' && window.scrollY < 400) {
+                 current = 'hero'; // L'id que nous avons ajouté à la section hero
+            }
+
+            navLinksActive.forEach(link => {
                 const href = link.getAttribute('href');
+                link.style.color = 'var(--neon-green)';
+                link.style.textShadow = '0 0 5px var(--neon-green)';
+
                 if (href && href.slice(1) === current) {
-                    link.style.color = '#00f0ff';
-                    link.style.textShadow = '0 0 20px #00f0ff';
-                } else {
-                    link.style.color = '#00ff41';
-                    link.style.textShadow = '0 0 5px #00ff41';
+                    link.style.color = 'var(--neon-cyan)';
+                    link.style.textShadow = '0 0 20px var(--neon-cyan)';
                 }
             });
         });
 
-        // Typing Effect
+        // Typing Effect (Version JS uniquement)
         const typingText = document.querySelector('.typing-effect');
-        const words = ['SECURITY STUDENT', 'PENETRATION TESTING', 'THREAT DETECTION', 'CYBER DEFENSE'];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        if (typingText) { // Vérifier que l'élément existe
+            const words = ['CYBERSECURITY STUDENT', 'PENETRATION TESTER', 'THREAT HUNTER', 'CYBER DEFENDER'];
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
 
-        function type() {
-            const currentWord = words[wordIndex];
-            
-            if (isDeleting) {
-                typingText.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
+            function type() {
+                const currentWord = words[wordIndex];
 
-            if (!isDeleting && charIndex === currentWord.length) {
-                isDeleting = true;
-                setTimeout(type, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 50 : 100);
+                if (isDeleting) {
+                    typingText.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingText.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000); // Pause à la fin du mot
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(type, 500); // Pause avant de taper le nouveau mot
+                } else {
+                    setTimeout(type, isDeleting ? 50 : 100); // Vitesse de frappe/suppression
+                }
             }
+            setTimeout(type, 1000); // Démarrer après 1s
         }
 
-        setTimeout(type, 1000);
+        // --- NOUVEAU: Alerte pour les liens de projet ---
+        document.querySelectorAll('.project-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Empêche le lien de faire quoi que ce soit
+                alert('Détails du projet à venir bientôt !');
+            });
+        });
+
     </script>
 </body>
 </html>
