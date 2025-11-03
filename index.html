@@ -40,7 +40,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background:
+            background: 
                 linear-gradient(0deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 65, 0.02) 1px, transparent 1px);
             background-size: 40px 40px;
@@ -253,7 +253,7 @@
             /* L'animation CSS a été supprimée pour laisser le JS fonctionner */
             animation: blink 0.7s step-end infinite; /* Garder juste le clignotement */
         }
-
+        
         /* Suppression de @keyframes typing, géré par JS */
 
         @keyframes blink {
@@ -723,7 +723,7 @@
             clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
             transition: all 0.3s ease; /* Ajouté depuis le bloc dupliqué */
         }
-
+        
         /* Effet de balayage lumineux */
         .timeline-content::before {
             content: '';
@@ -904,7 +904,7 @@
 
         @media (max-width: 768px) {
             nav { padding: 20px; }
-
+            
             /* --- MOBILE NAV CSS --- */
             .burger {
                 display: block;
@@ -1176,8 +1176,8 @@
                     <div class="project-number">// PROJECT_01</div>
                     <h3>WEB APPLICATION SECURITY AUDIT</h3>
                     <p>
-                        Comprehensive penetration testing laboratory targeting DVWA and bWAPP platforms. Conducted systematic OWASP Top 10
-                        vulnerability assessments including SQL injection, XSS, CSRF, authentication bypass, and command injection exploits.
+                        Comprehensive penetration testing laboratory targeting DVWA and bWAPP platforms. Conducted systematic OWASP Top 10 
+                        vulnerability assessments including SQL injection, XSS, CSRF, authentication bypass, and command injection exploits. 
                         Documented attack vectors, exploitation techniques, and remediation strategies.
                     </p>
                     <div class="tech-tags">
@@ -1193,8 +1193,8 @@
                     <div class="project-number">// PROJECT_02</div>
                     <h3>API & MOBILE SECURITY ASSESSMENT</h3>
                     <p>
-                        Full-spectrum security audit of REST API and Android application. Performed authentication bypass, token manipulation,
-                        IDOR testing, APK decompilation, API fuzzing, and HTTPS interception. Created comprehensive Postman security test
+                        Full-spectrum security audit of REST API and Android application. Performed authentication bypass, token manipulation, 
+                        IDOR testing, APK decompilation, API fuzzing, and HTTPS interception. Created comprehensive Postman security test 
                         collection for automated vulnerability scanning and validation.
                     </p>
                     <div class="tech-tags">
@@ -1210,8 +1210,8 @@
                     <div class="project-number">// PROJECT_03</div>
                     <h3>ZERO TRUST ARCHITECTURE</h3>
                     <p>
-                        Designed and implemented enterprise-grade Zero Trust security model featuring identity-based access control,
-                        network microsegmentation, and continuous monitoring. Integrated Keycloak IAM for authentication, pfSense for
+                        Designed and implemented enterprise-grade Zero Trust security model featuring identity-based access control, 
+                        network microsegmentation, and continuous monitoring. Integrated Keycloak IAM for authentication, pfSense for 
                         network segmentation, and Wazuh SIEM for threat detection with simulated attack scenarios.
                     </p>
                     <div class="tech-tags">
@@ -1227,8 +1227,8 @@
                     <div class="project-number">// PROJECT_04</div>
                     <h3>ML-BASED THREAT DETECTION</h3>
                     <p>
-                        Developed advanced threat detection system combining behavioral clustering algorithms (HDBSCAN) with ensemble
-                        learning models (XGBoost, Random Forest). Implemented SHAP-based explainability framework for transparent model
+                        Developed advanced threat detection system combining behavioral clustering algorithms (HDBSCAN) with ensemble 
+                        learning models (XGBoost, Random Forest). Implemented SHAP-based explainability framework for transparent model 
                         interpretation, validation, and threat intelligence automation.
                     </p>
                     <div class="tech-tags">
@@ -1244,8 +1244,8 @@
                     <div class="project-number">// PROJECT_05</div>
                     <h3>BLOCKCHAIN E-LEARNING PLATFORM</h3>
                     <p>
-                        Created decentralized learning platform with secure certification system and tamper-proof learner tracking via
-                        smart contracts. Ensures credential integrity, transparency, and immutable record-keeping for educational
+                        Created decentralized learning platform with secure certification system and tamper-proof learner tracking via 
+                        smart contracts. Ensures credential integrity, transparency, and immutable record-keeping for educational 
                         achievements using blockchain technology and cryptographic verification.
                     </p>
                     <div class="tech-tags">
@@ -1395,7 +1395,7 @@
             burger.addEventListener('click', () => {
                 // Toggle Nav
                 navLinks.classList.toggle('nav-active');
-
+                
                 // Burger Animation
                 burger.classList.toggle('toggle');
             });
@@ -1434,7 +1434,7 @@
             anchor.addEventListener('click', function(e) {
                 // Pas besoin de e.preventDefault() si on utilise le scroll-behavior CSS
                 // Sauf si on veut un contrôle plus fin, mais pour l'instant c'est ok.
-
+                
                 // Ferme le menu mobile si un lien est cliqué
                 if (navLinks.classList.contains('nav-active')) {
                     navLinks.classList.remove('nav-active');
@@ -1447,7 +1447,7 @@
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]'); // Cibler sections avec ID
             const navLinksActive = document.querySelectorAll('.nav-links a');
-
+            
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - 200;
@@ -1465,7 +1465,7 @@
                 const href = link.getAttribute('href');
                 link.style.color = 'var(--neon-green)';
                 link.style.textShadow = '0 0 5px var(--neon-green)';
-
+                
                 if (href && href.slice(1) === current) {
                     link.style.color = 'var(--neon-cyan)';
                     link.style.textShadow = '0 0 20px var(--neon-cyan)';
@@ -1483,7 +1483,7 @@
 
             function type() {
                 const currentWord = words[wordIndex];
-
+                
                 if (isDeleting) {
                     typingText.textContent = currentWord.substring(0, charIndex - 1);
                     charIndex--;
